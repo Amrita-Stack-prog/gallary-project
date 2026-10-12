@@ -7,8 +7,8 @@ const App = () => {
   const [index,setIndex]=useState(1);
 
   const getData=async()=>{
-      const {data}=await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=5`);
-      console.log(data);
+      const {data}=await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=12`);
+      // console.log(data);
       setUserData(data);
   }
 
@@ -17,9 +17,10 @@ const App = () => {
     getData()
   },[index])
 
-  let printUserData=<h3 className='text-gray-300'>Loading...</h3>
+  let printUserData=<h3 className='text-gray-300 h-screen w-full text-5xl flex items-center justify-center'>Loading...</h3>
   
   if(userData.length>0){
+    
     printUserData=userData.map(function(elem,idx){
       return <div key={idx}>
         
@@ -41,8 +42,11 @@ const App = () => {
       onClick={getData}
       className='bg-green-600 px-5 active:scale-95 mb-3 py-2 m-4 rounded text-white'>Get data
       </button> */}
-      
-      <div className='flex flex-wrap p-4 gap-4'>
+      <h3 className=" mb-8 text-center h-20 text-4xl sm:text-5xl font-extrabold tracking-wide bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent drop-shadow-sm">
+  Image Gallery
+</h3>
+      <div className='flex flex-wrap mt-5 p-4 gap-6 justify-center'>
+        
         {printUserData}
       </div>
 
